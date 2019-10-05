@@ -13,13 +13,10 @@
 
   <project>
     <PathAndName>.\2_blinky_with_shu_libraries\mdk-arm\blinky_with_libraries.uvprojx</PathAndName>
-    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\3_exercises\mdk-arm\exercises.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
-    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
@@ -28,6 +25,8 @@
 
   <project>
     <PathAndName>.\5_analog_blink_rate\mdk-arm\analog_blink.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
 </ProjectWorkspace>
