@@ -14,6 +14,7 @@
 // include the shu bsp libraries for the stm32f7 discovery board
 #include "pinmappings.h"
 #include "clock.h"
+#include "adc.h"
 #include "stm32746g_discovery_lcd.h"
 
 // LCD DEFINES
@@ -27,5 +28,46 @@ int main()
   // properly
   HAL_Init();
   init_sysclk_216MHz();
+	
+	// initialise the lcd
+  BSP_LCD_Init();
+  BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, SDRAM_DEVICE_ADDR);
+  BSP_LCD_SelectLayer(LTDC_ACTIVE_LAYER);
+	
+	// set the background colour to blue and clear the lcd
+  BSP_LCD_SetBackColor(LCD_COLOR_BLUE);
+  BSP_LCD_Clear(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+  
+  // set the font to use
+  BSP_LCD_SetFont(&Font24); 
 
+	gpio_pin_t pot = {PA_0, GPIOA, GPIO_PIN_0};
+	init_adc(pot);
+	
+	float volt = 0;
+	float temp = 0;
+	
+	while(1)
+	{
+		uint16_t adc_val = read_adc(pot);
+		
+	  // format a string based around the adc value and print to lcd
+    char str[24];
+    sprintf(str, "ADC = %4d", adc_val);
+    BSP_LCD_DisplayStringAtLine(1, (uint8_t *)str);
+		
+		volt = (adc_val*3)/4096;
+		temp = ((volt*1000)-500)/10;
+		
+		char str2[24];
+    sprintf(str2, "Voltage = %f V", volt);
+    BSP_LCD_DisplayStringAtLine(2, (uint8_t *)str2);
+		
+		char str3[24];
+    sprintf(str3, "Temp = %f C", temp);
+    BSP_LCD_DisplayStringAtLine(3, (uint8_t *)str3);
+		
+		HAL_Delay(100);
+	}
 }
