@@ -17,6 +17,7 @@
 
   <project>
     <PathAndName>.\3_exercises\mdk-arm\exercises.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>

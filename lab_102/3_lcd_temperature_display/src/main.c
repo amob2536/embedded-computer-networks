@@ -42,30 +42,31 @@ int main()
   // set the font to use
   BSP_LCD_SetFont(&Font24); 
 
-	gpio_pin_t pot = {PA_0, GPIOA, GPIO_PIN_0};
-	init_adc(pot);
+	gpio_pin_t TDR = {PA_0, GPIOA, GPIO_PIN_0};
+	init_adc(TDR);
 	
 	float volt = 0;
 	float temp = 0;
+	float adc_val = 0;
 	
 	while(1)
 	{
-		uint16_t adc_val = read_adc(pot);
+		adc_val = read_adc(TDR);
 		
 	  // format a string based around the adc value and print to lcd
     char str[24];
-    sprintf(str, "ADC = %4d", adc_val);
+    sprintf(str, "ADC = %.0f", adc_val);
     BSP_LCD_DisplayStringAtLine(1, (uint8_t *)str);
 		
-		volt = (adc_val*3)/4096;
-		temp = ((volt*1000)-500)/10;
+		volt = ((adc_val*3)/4096.0);
+		temp = ((volt*1000)-500)/100.0;
 		
 		char str2[24];
-    sprintf(str2, "Voltage = %f V", volt);
+    sprintf(str2, "Voltage = %.2f V", volt);
     BSP_LCD_DisplayStringAtLine(2, (uint8_t *)str2);
 		
 		char str3[24];
-    sprintf(str3, "Temp = %f C", temp);
+    sprintf(str3, "Temp = %6.1f C", temp);
     BSP_LCD_DisplayStringAtLine(3, (uint8_t *)str3);
 		
 		HAL_Delay(100);
