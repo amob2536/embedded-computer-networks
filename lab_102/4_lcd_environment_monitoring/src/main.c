@@ -42,16 +42,16 @@ int main()
   // set the font to use
   BSP_LCD_SetFont(&Font24); 
 
-	gpio_pin_t LDR = {PA_0, GPIOA, GPIO_PIN_0};
+	gpio_pin_t LDR = {PF_8, GPIOF, GPIO_PIN_8};
 	init_adc(LDR);
-	gpio_pin_t TDR = {PB_15, GPIOB, GPIO_PIN_15};
+	gpio_pin_t TDR = {PA_0, GPIOA, GPIO_PIN_0};
 	init_adc(TDR);
 	
-	float ldr_val = 0;
+	uint16_t ldr_val = 0;
 	float ldr_max = 0;
 	float ldr_min = 0;
 	float LDR_percentage = 0;
-	float tdr_val = 0;
+	uint16_t tdr_val = 0;
 	float tdr_volt = 0;
 	float Temperature = 0;
 	int Calibration_Time = HAL_GetTick();
@@ -81,11 +81,11 @@ int main()
 		
 	  // format a string based around the adc value and print to lcd
     char str1[24];
-    sprintf(str1, "LDR = %.0f", ldr_val);
+    sprintf(str1, "LDR = %04d", ldr_val);
     BSP_LCD_DisplayStringAtLine(1, (uint8_t *)str1);
 		
 		char str2[24];
-    sprintf(str2, "TDR = %.0f", tdr_val);
+    sprintf(str2, "TDR = %04d", tdr_val);
     BSP_LCD_DisplayStringAtLine(2, (uint8_t *)str2);
 		
 		LDR_percentage = ((ldr_val-ldr_min)*100.0)/(ldr_max-ldr_min);
@@ -94,8 +94,8 @@ int main()
     sprintf(str3, "LDR Percentage = %6.0f %%", LDR_percentage);
     BSP_LCD_DisplayStringAtLine(4, (uint8_t *)str3);
 		
-		tdr_volt = ((tdr_val*3)/4096.0);
-		Temperature = ((tdr_volt*1000)-500)/100.0;
+		tdr_volt = ((tdr_val*3.3)/4077.0);
+		Temperature = ((tdr_volt*1000.0)-500.0)/10.0;
 		
 		char str4[24];
     sprintf(str4, "Temperature = %6.1f C", Temperature);
