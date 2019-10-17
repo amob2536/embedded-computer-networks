@@ -21,9 +21,9 @@
 // HARDWARE DEFINES
 
 // specify some leds
-gpio_pin_t led1 = {PF_6, GPIOF, GPIO_PIN_6};
-gpio_pin_t led2 = {PF_7, GPIOF, GPIO_PIN_7};
-gpio_pin_t led3 = {PF_8, GPIOF, GPIO_PIN_8};
+gpio_pin_t ledb1 = {PF_6, GPIOF, GPIO_PIN_6};
+gpio_pin_t ledb2 = {PF_7, GPIOF, GPIO_PIN_7};
+gpio_pin_t ledb3 = {PF_8, GPIOF, GPIO_PIN_8};
 
 // RTOS DEFINES
 
@@ -50,12 +50,12 @@ void dumb_delay(uint32_t delay);
 // THREAD INITIALISATION
 
 // create the threads
-int init_thread(void)
+int init_blinky_threads(void)
 {
   // initialize peripherals here
-  init_gpio(led1, OUTPUT);
-  init_gpio(led2, OUTPUT);
-  init_gpio(led3, OUTPUT);
+  init_gpio(ledb1, OUTPUT);
+  init_gpio(ledb2, OUTPUT);
+  init_gpio(ledb3, OUTPUT);
   
   // create the thread and get its taks id
   tid_led_1_thread = osThreadCreate(osThread(led_1_thread), NULL);
@@ -78,7 +78,7 @@ void led_1_thread(void const *argument)
   while(1)
   {
     // toggle the first led on the gpio pin
-    toggle_gpio(led1);
+    toggle_gpio(ledb1);
     osDelay(500);
   }
 }
@@ -89,7 +89,7 @@ void led_2_thread(void const *argument)
   while(1)
   {
     // toggle the second led on the gpio pin
-    toggle_gpio(led2);
+    toggle_gpio(ledb2);
     osDelay(200);
   }
 }
@@ -100,7 +100,7 @@ void led_3_thread(void const *argument)
   while(1)
   {
     // toggle the second led on the gpio pin
-    toggle_gpio(led3);
+    toggle_gpio(ledb3);
     osDelay(1000);
   }
 }

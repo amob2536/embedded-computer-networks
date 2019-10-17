@@ -9,16 +9,17 @@
 
   <project>
     <PathAndName>.\1_rtos_blinky\mdk-arm\blinky.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
-    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\2_rtos_mail_queue\mdk-arm\rtos_mail_queue.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\3_rtos_application\mdk-arm\rtos_application.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>

@@ -19,6 +19,8 @@
 extern int init_data_thread(void);
 extern int init_display_thread(void);
 
+extern int init_blinky_threads(void);
+
 // this is the main method
 int main()
 { 
@@ -42,6 +44,8 @@ int main()
   // initialise our threads
   init_data_thread();
   init_display_thread();
+	
+	init_blinky_threads();
   
   // start everything running
   osKernelStart();

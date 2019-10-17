@@ -87,6 +87,7 @@ void data_thread(void const *argument)
     mail->counter = i;
     mail->current = (1.0f / (random * i)); 
     mail->voltage = (5.0f / (random * i));
+		mail->simulated_die = (((int)((9.0f / (random * i)))) % 6) + 1;
     
     // put the data in the mail box and wait for one second
     osMailPut(mail_box, mail);

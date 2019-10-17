@@ -68,6 +68,9 @@ void display_thread(void const *argument)
       mail_t *mail = (mail_t*)evt.value.p;
       printf("\nVoltage: %.2f V\n\r"   , mail->voltage);
       printf("Current: %.2f A\n\r"     , mail->current);
+			
+			printf("Die Roll: %d\n\r"        , mail->simulated_die);
+			
       printf("Number of cycles: %u\n\r", mail->counter);
 
       osMailFree(mail_box, mail);
