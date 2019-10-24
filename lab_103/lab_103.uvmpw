@@ -9,6 +9,7 @@
 
   <project>
     <PathAndName>.\1_rtos_blinky\mdk-arm\blinky.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>

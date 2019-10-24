@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>rtos_application</TargetName>
+      <TargetName>rtos_mail_queue</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
@@ -332,7 +332,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F746xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\..\..\libraries\cmsis\core\inc;..\..\..\libraries\cmsis\rtos\inc;..\..\..\libraries\bsp\stm32f7_family\inc;..\..\..\libraries\bsp\stm32f7_discovery\bsp\inc;..\..\..\libraries\bsp\stm32f7_discovery_shu_kit\inc;..\..\..\libraries\stm32f7xx_hal\inc;..\..\..\libraries\stm32f7xx_hal\inc\legacy</IncludePath>
+              <IncludePath>..\inc;..\..\..\libraries\cmsis\core\inc;..\..\..\libraries\cmsis\rtos\inc;..\..\..\libraries\bsp\stm32f7_family\inc;..\..\..\libraries\bsp\stm32f7_discovery\inc;..\..\..\libraries\bsp\stm32f7_discovery_shu_kit\inc;..\..\..\libraries\stm32f7xx_hal\inc;..\..\..\libraries\stm32f7xx_hal\inc\legacy</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -386,24 +386,19 @@
               <FilePath>..\src\data_display_thread.c</FilePath>
             </File>
             <File>
+              <FileName>data_generation_thread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\data_generation_thread.c</FilePath>
+            </File>
+            <File>
               <FileName>serial.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\serial.c</FilePath>
             </File>
             <File>
-              <FileName>DAQ_thread.c</FileName>
+              <FileName>blinky_thread.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\DAQ_thread.c</FilePath>
-            </File>
-            <File>
-              <FileName>LED-thread.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\LED-thread.c</FilePath>
-            </File>
-            <File>
-              <FileName>CALC_thread.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\CALC_thread.c</FilePath>
+              <FilePath>..\src\blinky_thread.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -863,31 +858,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>stm32f7_discovery_bsp</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32746g_discovery.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery\bsp\src\stm32746g_discovery.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32746g_discovery_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery\bsp\src\stm32746g_discovery_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32746g_discovery_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery\bsp\src\stm32746g_discovery_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery_shu_kit\src\adc.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>stm32f7_discovery_bsp_shu</GroupName>
           <Files>
             <File>
@@ -904,6 +874,11 @@
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\libraries\bsp\stm32f7_discovery_shu_kit\src\gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>random_numbers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery_shu_kit\src\random_numbers.c</FilePath>
             </File>
           </Files>
         </Group>
