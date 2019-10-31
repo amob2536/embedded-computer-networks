@@ -41,7 +41,8 @@ osMessageQId msg_q;
 // HARDWARE DEFINES
 
 // map the led to GPIO PI2 
-gpio_pin_t led = {PI_2, GPIOI, GPIO_PIN_2};
+gpio_pin_t led_1 = {PI_2, GPIOI, GPIO_PIN_2};
+gpio_pin_t led_2 = {PB_14, GPIOB, GPIO_PIN_14};
 
 // THREAD INITIALISATION
 
@@ -49,8 +50,9 @@ gpio_pin_t led = {PI_2, GPIOI, GPIO_PIN_2};
 int init_uart_threads(void)
 {
   // initialise gpio output for led
-  init_gpio(led, OUTPUT);
-  
+  init_gpio(led_1, OUTPUT);
+  init_gpio(led_2, OUTPUT);
+	
   // set up the uart at 9600 baud and enable the rx interrupts
   init_uart(9600);
   enable_rx_interrupt();
@@ -112,13 +114,24 @@ void uart_rx_thread(void const *argument)
         // for strcmp details ...
         if(strcmp((char*)packet, "on-led1\r") == 0)
         {
-          write_gpio(led, HIGH);
+          write_gpio(led_1, HIGH);
           printf("led 1 on\r\n");
         }
         if(strcmp((char*)packet, "off-led1\r") == 0)
         {
-          write_gpio(led, LOW);
+          write_gpio(led_1, LOW);
           printf("led 1 off\r\n");
+        }
+				
+				if(strcmp((char*)packet, "on-led2\r") == 0)
+        {
+          write_gpio(led_2, HIGH);
+          printf("led 2 on\r\n");
+        }
+        if(strcmp((char*)packet, "off-led2\r") == 0)
+        {
+          write_gpio(led_2, LOW);
+          printf("led 2 off\r\n");
         }
         
         // print debugging message to the uart
