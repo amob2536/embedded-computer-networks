@@ -124,5 +124,32 @@ void xbee_rx_thread(void const *argument)
 // process an xbee packet
 void process_packet(uint8_t* packet, int length)
 {
-	// to do!
+	//check it is an explicit io sample recieved packet (because otherwise the structure will be wrong
+	if(packet[3] == 0x92)
+	{
+		 // print the xbee long address
+		printf("xbee long address is: ");
+		int i=0;
+		for(i=4; i < 12; i++)
+		{
+			printf("%02X ", packet[i]);
+		}
+		printf("\r\n");
+		
+		// print the xbee short address
+		printf("xbee short address is: ");
+		printf("%02X %02X\r\n", packet[12], packet[13]);
+		
+		// print out the data that we have - this is the bit of the packet that contains the adc values from the light and temperature sensor
+		int datastart = 16;
+		if(datastart < (length - 1))
+		{
+			printf("data = ");
+			while(datastart < (length - 1))
+			{
+				printf("%02X ", packet[datastart++]);
+			}
+			printf("\r\n");
+		}
+	}
 }

@@ -25,6 +25,7 @@
 #include "pinmappings.h"
 #include "clock.h"
 #include "gpio.h"
+#include "adc.h"
 
 // RTOS DEFINES
 
@@ -39,10 +40,10 @@ osMessageQDef(message_q, 128, uint8_t);
 osMessageQId msg_q;
 
 // HARDWARE DEFINES
-
-// map the led to GPIO PI2 
 gpio_pin_t led_1 = {PI_2, GPIOI, GPIO_PIN_2};
 gpio_pin_t led_2 = {PB_14, GPIOB, GPIO_PIN_14};
+gpio_pin_t button = {PF_8, GPIOF, GPIO_PIN_8};
+gpio_pin_t analogue = {PA_0, GPIOA, GPIO_PIN_0};
 
 // THREAD INITIALISATION
 
@@ -52,6 +53,8 @@ int init_uart_threads(void)
   // initialise gpio output for led
   init_gpio(led_1, OUTPUT);
   init_gpio(led_2, OUTPUT);
+	init_gpio(button, INPUT);
+	init_adc(analogue);
 	
   // set up the uart at 9600 baud and enable the rx interrupts
   init_uart(9600);
@@ -112,28 +115,40 @@ void uart_rx_thread(void const *argument)
         // correctly
         // see: http://www.tutorialspoint.com/c_standard_library/c_function_strcmp.htm
         // for strcmp details ...
-        if(strcmp((char*)packet, "on-led1\r") == 0)
+        if(strcmp((char*)packet, "led1-on\r") == 0)
         {
           write_gpio(led_1, HIGH);
           printf("led 1 on\r\n");
         }
-        if(strcmp((char*)packet, "off-led1\r") == 0)
+        if(strcmp((char*)packet, "led1-off\r") == 0)
         {
           write_gpio(led_1, LOW);
           printf("led 1 off\r\n");
         }
 				
-				if(strcmp((char*)packet, "on-led2\r") == 0)
+				if(strcmp((char*)packet, "led2-on\r") == 0)
         {
           write_gpio(led_2, HIGH);
           printf("led 2 on\r\n");
         }
-        if(strcmp((char*)packet, "off-led2\r") == 0)
+        if(strcmp((char*)packet, "led2-off\r") == 0)
         {
           write_gpio(led_2, LOW);
           printf("led 2 off\r\n");
         }
+				
+				if(strcmp((char*)packet, "button-state\r") == 0)
+        {
+          uint16_t button_val = read_gpio(button);
+          printf("button state: %d\r\n", button_val);
+        }
         
+				if(strcmp((char*)packet, "analogue-read\r") == 0)
+        {
+          uint16_t analogue_val = read_adc(analogue);
+          printf("analogue read %d\r\n", analogue_val);
+        }
+				
         // print debugging message to the uart
         printf("DEBUGGING: %s\r\n", packet);
         
