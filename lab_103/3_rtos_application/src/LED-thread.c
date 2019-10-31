@@ -9,6 +9,8 @@
  * purpose:   55-604481 embedded computer networks : lab 103
  */
 
+#include "main.h"
+
 // include the basic headers for the hal drivers
 #include "stm32f7xx_hal.h"
 #include "cmsis_os.h"
@@ -20,10 +22,13 @@
 
 // HARDWARE DEFINES
 
+// the mailbox we are pulling data from is declared elsewhere ...
+extern osMailQId mail_box_3;
+
 // specify some leds
-gpio_pin_t ledb1 = {PF_6, GPIOF, GPIO_PIN_6};
-gpio_pin_t ledb2 = {PF_7, GPIOF, GPIO_PIN_7};
-gpio_pin_t ledb3 = {PF_8, GPIOF, GPIO_PIN_8};
+gpio_pin_t ledb1 = {PA_8, GPIOA, GPIO_PIN_8};
+gpio_pin_t ledb2 = {PA_15, GPIOA, GPIO_PIN_15};
+gpio_pin_t ledb3 = {PI_2, GPIOI, GPIO_PIN_2};
 
 // RTOS DEFINES
 
@@ -39,8 +44,6 @@ osThreadId tid_led_3_thread;
 
 // define thread priorities
 osThreadDef(led_1_thread, osPriorityNormal, 1, 0);
-osThreadDef(led_2_thread, osPriorityNormal, 1, 0);
-osThreadDef(led_3_thread, osPriorityNormal, 1, 0);
 
 // OTHER FUNCTIONS
 
@@ -50,7 +53,7 @@ void dumb_delay(uint32_t delay);
 // THREAD INITIALISATION
 
 // create the threads
-int init_LED_threads(void)
+int init_LED_thread(void)
 {
   // initialize peripherals here
   init_gpio(ledb1, OUTPUT);
@@ -59,11 +62,9 @@ int init_LED_threads(void)
   
   // create the thread and get its taks id
   tid_led_1_thread = osThreadCreate(osThread(led_1_thread), NULL);
-  tid_led_2_thread = osThreadCreate(osThread(led_2_thread), NULL);
-  tid_led_3_thread = osThreadCreate(osThread(led_3_thread), NULL);
   
   // check if everything worked ...
-  if(!(tid_led_1_thread && tid_led_2_thread && tid_led_3_thread))
+  if(!(tid_led_1_thread))
   {
     return(-1);
   }
@@ -77,31 +78,29 @@ void led_1_thread(void const *argument)
 {
   while(1)
   {
-    // toggle the first led on the gpio pin
-    toggle_gpio(ledb1);
-    osDelay(500);
-  }
-}
-
-// blink led 2
-void led_2_thread(void const *argument)
-{
-  while(1)
-  {
-    // toggle the second led on the gpio pin
-    toggle_gpio(ledb2);
-    osDelay(200);
-  }
-}
-
-// blink led 3
-void led_3_thread(void const *argument)
-{
-  while(1)
-  {
-    // toggle the second led on the gpio pin
-    toggle_gpio(ledb3);
-    osDelay(1000);
+		// get the data ...
+    osEvent evt = osMailGet(mail_box_3, osWaitForever);
+    if(evt.status == osEventMail)
+		{			
+      alarm_mail_t *alarm_mail = (alarm_mail_t*)evt.value.p;
+			
+			if(alarm_mail->Light_Alarm == 1)
+				write_gpio(ledb1, HIGH);
+			else
+				write_gpio(ledb1, LOW);
+			
+			if(alarm_mail->Temp_Alarm == 1)
+				write_gpio(ledb2, HIGH);
+			else
+				write_gpio(ledb2, LOW);
+			
+			if((alarm_mail->Light_Alarm == 1)&&(alarm_mail->Temp_Alarm == 1))
+				write_gpio(ledb3, HIGH);
+			else
+				write_gpio(ledb3, LOW);
+			
+			osMailFree(mail_box_3, alarm_mail);
+		}
   }
 }
 

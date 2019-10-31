@@ -29,8 +29,15 @@ daq_mail_t;
 
 typedef struct
 {
-	float		LDR_Percentage;
-	float		TDR_Temperature;
+	uint16_t		Temp_Alarm;
+	uint16_t		Light_Alarm;
+}
+alarm_mail_t;
+
+typedef struct
+{
+	float				LDR_Percentage;
+	float				TDR_Temperature;
 } 
 calc_mail_t;
 

@@ -27,7 +27,7 @@ void HAL_Delay(__IO uint32_t Delay)
 extern int init_DAQ_thread(void);
 extern int init_display_thread(void);
 extern int init_CALC_thread(void);
-extern int init_LED_threads(void);
+extern int init_LED_thread(void);
 
 // this is the main method
 int main()
@@ -53,7 +53,7 @@ int main()
   init_DAQ_thread();
   init_display_thread();
 	init_CALC_thread();
-	init_LED_threads();
+	init_LED_thread();
   
   // start everything running
   osKernelStart();

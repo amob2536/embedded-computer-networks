@@ -194,7 +194,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U066CFF515748775187182023 -O8399 -SF1800 -C0 -A0 -I0 -HNlocalhost -HP7184 -P2 -N00("ARM CoreSight SW-DP") -D00(5BA02477) -L00(0) -TO19 -TC216000000 -TP21 -TDS806B -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0STM32F7x_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F746NGHx$CMSIS\Flash\STM32F7x_1024.FLM)</Name>
+          <Name>-U066CFF515748775187182023 -O8399 -S1 -C0 -A0 -N00("ARM CoreSight SW-DP") -D00(5BA02477) -L00(0) -TO19 -TC216000000 -TP21 -TDS806B -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0STM32F7x_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F746NGHx$CMSIS\Flash\STM32F7x_1024.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -204,7 +204,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(6017=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(6016=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -223,14 +223,14 @@
           <Type>0</Type>
           <LineNumber>288</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134239584</Address>
+          <Address>134240240</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\src\rtx_conf_cm.c</Filename>
+          <Filename>&lt;3&gt;..\src\rtx_conf_cm.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\blinky\../src/rtx_conf_cm.c\288</Expression>
         </Bp>
@@ -239,14 +239,14 @@
           <Type>0</Type>
           <LineNumber>285</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134239582</Address>
+          <Address>134240238</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\src\rtx_conf_cm.c</Filename>
+          <Filename>&lt;3&gt;..\src\rtx_conf_cm.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\blinky\../src/rtx_conf_cm.c\285</Expression>
         </Bp>
@@ -255,14 +255,14 @@
           <Type>0</Type>
           <LineNumber>282</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134239580</Address>
+          <Address>134240236</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\src\rtx_conf_cm.c</Filename>
+          <Filename>&lt;3&gt;..\src\rtx_conf_cm.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\blinky\../src/rtx_conf_cm.c\282</Expression>
         </Bp>
@@ -271,34 +271,35 @@
           <Type>0</Type>
           <LineNumber>279</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134239578</Address>
+          <Address>134240234</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\src\rtx_conf_cm.c</Filename>
+          <Filename>&lt;3&gt;..\src\rtx_conf_cm.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\blinky\../src/rtx_conf_cm.c\279</Expression>
         </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
-          <LineNumber>25</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;..\src\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
       </Breakpoint>
+      <WatchWindow1>
+        <Ww>
+          <count>0</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>calc_mail</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>calc_mail</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>alarm_mail</ItemText>
+        </Ww>
+      </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -322,7 +323,7 @@
         <aLa>0</aLa>
         <aPa1>0</aPa1>
         <AscS4>0</AscS4>
-        <aSer4>0</aSer4>
+        <aSer4>1</aSer4>
         <StkLoc>0</StkLoc>
         <TrcWin>0</TrcWin>
         <newCpu>0</newCpu>
@@ -334,6 +335,16 @@
       <Lin2Executable></Lin2Executable>
       <Lin2ConfigFile></Lin2ConfigFile>
       <bLin2Auto>0</bLin2Auto>
+      <SystemViewers>
+        <Entry>
+          <Name>OS Support\Event Viewer</Name>
+          <WinId>35904</WinId>
+        </Entry>
+        <Entry>
+          <Name>OS Support\System and Thread Viewer</Name>
+          <WinId>35905</WinId>
+        </Entry>
+      </SystemViewers>
       <DebugDescription>
         <Enable>1</Enable>
         <EnableLog>0</EnableLog>
@@ -425,7 +436,7 @@
 
   <Group>
     <GroupName>configuration</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1509,7 +1520,7 @@
 
   <Group>
     <GroupName>stm32f7_discovery_bsp</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

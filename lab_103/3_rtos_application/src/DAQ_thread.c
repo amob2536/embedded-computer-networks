@@ -27,9 +27,9 @@
 // RTOS DEFINES
 
 // declare the thread function prototypes, thread id, and priority
-void DAQ_thread(void const *argument);
+void data_thread(void const *argument);
 osThreadId tid_DAQ_thread;
-osThreadDef(DAQ_thread, osPriorityNormal, 1, 0);
+osThreadDef(data_thread, osPriorityNormal, 1, 0);
 
 // set up the mail queue
 osMailQDef(mail_box_1, 16, daq_mail_t);
@@ -56,7 +56,7 @@ int init_DAQ_thread(void)
   mail_box_1 = osMailCreate(osMailQ(mail_box_1), NULL);
   
   // create the thread and get its task id
-  tid_DAQ_thread = osThreadCreate(osThread(DAQ_thread), NULL);
+  tid_DAQ_thread = osThreadCreate(osThread(data_thread), NULL);
   
   // check if everything worked ...
   if(!tid_DAQ_thread)

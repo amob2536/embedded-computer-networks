@@ -33,8 +33,6 @@ osThreadDef(display_thread, osPriorityNormal, 1, 0);
 // the mailbox we are pulling data from is declared elsewhere ...
 extern osMailQId mail_box_2;
 
-
-
 // THREAD INITIALISATION
 
 // create the data display thread
@@ -79,19 +77,19 @@ void display_thread(void const *argument)
 		// get the data ...
     osEvent evt = osMailGet(mail_box_2, osWaitForever);
     if(evt.status == osEventMail)
-		{
-			calc_mail_t* calc_mail = (calc_mail_t*) osMailAlloc(mail_box_2, osWaitForever);  
+		{			
+			calc_mail_t* calc_mail = (calc_mail_t*) evt.value.p;
+			
 			char str1[24];
-			sprintf(str1, "LDR = %.2f%%", calc_mail->LDR_Percentage);
+			sprintf(str1, "LDR = %3.2f", calc_mail->LDR_Percentage);
 			BSP_LCD_DisplayStringAtLine(1, (uint8_t *)str1);
 			
 			char str2[24];
-			sprintf(str1, "TDR = %.2f Deg C", calc_mail->TDR_Temperature);
-			BSP_LCD_DisplayStringAtLine(1, (uint8_t *)str1);
+			sprintf(str2, "TDR = %.2f Deg C", calc_mail->TDR_Temperature);
+			BSP_LCD_DisplayStringAtLine(2, (uint8_t *)str2);
 			
 			osMailFree(mail_box_2, calc_mail);
 		}
-		osDelay(100);
   }
 }
  
