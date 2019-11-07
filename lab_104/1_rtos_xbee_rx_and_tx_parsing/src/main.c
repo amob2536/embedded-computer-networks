@@ -20,6 +20,9 @@
 // include the xbee tx and rx functionality
 #include "xbee.h"
 
+// include main.h
+#include "main.h"
+
 // include the itm debugging
 #include "itm_debug.h"
 
