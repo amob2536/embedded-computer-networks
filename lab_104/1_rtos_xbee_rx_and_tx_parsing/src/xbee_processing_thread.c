@@ -150,6 +150,39 @@ void process_packet(uint8_t* packet, int length)
 				printf("%02X ", packet[datastart++]);
 			}
 			printf("\r\n");
+			
+			// extract the raw adc values from the io sample rx packet        
+			//        
+			// the data field looks like:        
+			// 01                       number of samples        
+			// 00 00                    digital channel mask        
+			// 03                       analog channel mask        
+			// 02 7D 02 1C              analog samples        
+			//        
+			// note: we are assuming a maximum of 2 analog channels, no digital        
+			// channels, and that we are only using dio0 and dio1 (if we are using        
+			// other inputs we need to adjust this code)
+			
+      // if there are no digital channels ...        
+			if(packet[16] + packet[17] == 0)        
+				{            
+					// if there is one analog channel read that            
+					if(packet[18] == 1 || packet[18] == 2)            
+					{                
+						printf("adc 1 value is : %4d\r\n", (packet[19] << 8) | packet[20]);            
+					}            
+					// if there are two analog channels read both            
+					if(packet[21] == 3)            
+					{                
+						printf("adc 1 value is : %4d\r\n", (packet[19] << 8) | packet[20]);                
+						printf("adc 2 value is : %4d\r\n", (packet[21] << 8) | packet[22]);            
+					}        
+				}        
+				else        
+				{            
+					printf("network problems! %02X\r\n", packet[17]);        
+				}        
+				printf("\r\n");
 		}
 	}
 }
