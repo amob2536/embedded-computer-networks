@@ -405,6 +405,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\xbee_packet_parser.c</FilePath>
             </File>
+            <File>
+              <FileName>data_display_thread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\data_display_thread.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -864,6 +869,23 @@
         </Group>
         <Group>
           <GroupName>stm32f7_discovery_bsp</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32746g_discovery_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery\bsp\src\stm32746g_discovery_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32746g_discovery.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery\bsp\src\stm32746g_discovery.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32746g_discovery_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\libraries\bsp\stm32f7_discovery\bsp\src\stm32746g_discovery_sdram.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>stm32f7_discovery_bsp_shu</GroupName>

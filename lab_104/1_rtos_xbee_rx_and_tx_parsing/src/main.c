@@ -30,6 +30,7 @@
 
 // declare the extern methods that set everything up for us
 extern int init_xbee_threads(void);
+extern int init_display_thread(void);
 
 // OVERRIDE HAL DELAY
 
@@ -87,6 +88,7 @@ int main()
 
 	// initialise our threads
 	init_xbee_threads();
+	init_display_thread();
 
 	// wait for the coordinator xbee to settle down, and then send the
 	// configuration packets

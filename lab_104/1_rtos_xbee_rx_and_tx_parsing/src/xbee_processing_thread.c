@@ -165,18 +165,27 @@ void process_packet(uint8_t* packet, int length)
 			
       // if there are no digital channels ...        
 			if(packet[16] + packet[17] == 0)        
-				{            
+				{        
+					// create our mail (i.e. the message container)   
+					mail_t* mail = (mail_t*) osMailAlloc(mail_box, osWaitForever); 
+					
 					// if there is one analog channel read that            
 					if(packet[18] == 1 || packet[18] == 2)            
 					{                
-						printf("adc 1 value is : %4d\r\n", (packet[19] << 8) | packet[20]);            
+						printf("adc 1 value is : %4d\r\n", (packet[19] << 8) | packet[20]);   
+						mail->light = (packet[19] << 8 | packet[20]);
 					}            
 					// if there are two analog channels read both            
 					if(packet[21] == 3)            
 					{                
-						printf("adc 1 value is : %4d\r\n", (packet[19] << 8) | packet[20]);                
-						printf("adc 2 value is : %4d\r\n", (packet[21] << 8) | packet[22]);            
-					}        
+						printf("adc 1 value is : %4d\r\n", (packet[19] << 8) | packet[20]);              
+						printf("adc 2 value is : %4d\r\n", (packet[21] << 8) | packet[22]);
+
+						mail->light = (packet[19] << 8 | packet[20]);
+						mail->temperature = (packet[21] << 8 | packet[22]);
+					} 
+					osMailPut(mail_box, mail);
+					osDelay(100);
 				}        
 				else        
 				{            
